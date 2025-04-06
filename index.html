@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Katz Bin - Waste Pickup App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #ffffff;
+      --accent: #00ffcc;
+      --note: #999999;
+      --btn-bg: #00ffcc;
+      --btn-text: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Urbanist', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      text-align: center;
+      overflow-x: hidden;
+      animation: popIn 0.9s ease-out;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .container {
+      max-width: 900px;
+      width: 90%;
+      margin: auto;
+      padding: 2rem 1rem;
+      flex: 1;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px var(--accent);
+      }
+      to {
+        text-shadow: 0 0 20px var(--accent), 0 0 30px var(--accent);
+      }
+    }
+
+    header p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin: 1rem 0;
+    }
+
+    .features {
+      background: #111;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+      margin: 2rem 0;
+      text-align: left;
+      animation: floatBox 3s infinite ease-in-out;
+    }
+
+    @keyframes floatBox {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+
+    .features p {
+      font-size: 1rem;
+      margin: 0.8rem 0;
+      color: #ffffff;
+    }
+
+    .features p::before {
+      content: "✔️ ";
+      color: var(--accent);
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin: 1rem;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 255, 204, 0.6);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(0, 255, 204, 1);
+      }
+    }
+
+    .download-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: var(--note);
+      margin-top: -0.5rem;
+    }
+
+    .qr {
+      margin-top: 2rem;
+    }
+
+    .qr img {
+      width: 180px;
+      height: 180px;
+    }
+
+    .version {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--note);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.85rem;
+      color: var(--note);
+      border-top: 1px solid #333;
+    }
+
+    .toggle-theme {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 1.2rem;
+      box-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
+      z-index: 99;
+    }
+
+    .toggle-theme:hover {
+      background: #00e6b3;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .features {
+        padding: 1.2rem;
+      }
+
+      .download-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .qr img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-theme" onclick="toggleTheme()">
+    <span id="theme-icon">🌙</span>
+  </button>
+
+  <div class="container">
+    <header>
+      <h1>Katz Bin</h1>
+      <p>
+        The future of waste pickup. Whether it's household garbage, recyclables, or e-waste—
+        Katz Bin lets you schedule pickup in seconds, track your orders, and pay seamlessly—all from your mobile.
+      </p>
+    </header>
+
+    <div class="features">
+      <p>Fast & Easy Pickup Booking</p>
+      <p>Real-Time Order Tracking</p>
+      <p>Multiple Payment Options (UPI, Card & Pay on Pickup)</p>
+      <p>Sleek, User-Friendly Interface</p>
+      <p>Eco-Friendly & Reliable Service</p>
+    </div>
+
+    <a href="https://www.mediafire.com/file/woz07zyg20m1a6e/Katz+Bin+base+version.apk/file" class="download-btn" target="_blank">Download for Android</a>
+    <div class="note">* Android version available now</div>
+
+    <a href="#" class="download-btn">Download for iOS</a>
+    <div class="note">* iOS version coming soon</div>
+
+    <div class="qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://www.mediafire.com/file/woz07zyg20m1a6e/Katz+Bin+base+version.apk/file&size=200x200" alt="QR Code to download" />
+      <p>Scan to download</p>
+    </div>
+
+    <div class="version">V5.20</div>
+  </div>
+
+  <div class="footer">@ksi.sql | All rights reserved</div>
+
+  <script>
+    function toggleTheme() {
+      const root = document.documentElement;
+      const icon = document.getElementById("theme-icon");
+
+      const currentBg = getComputedStyle(root).getPropertyValue('--bg').trim();
+
+      if (currentBg === '#ffffff') {
+        // Dark mode
+        root.style.setProperty('--bg', '#0a0a0a');
+        root.style.setProperty('--text', '#ffffff');
+        root.style.setProperty('--note', '#999999');
+        root.style.setProperty('--btn-bg', '#00ffcc');
+        root.style.setProperty('--btn-text', '#000000');
+        icon.textContent = '🌙';
+      } else {
+        // Light mode
+        root.style.setProperty('--bg', '#ffffff');
+        root.style.setProperty('--text', '#000000');
+        root.style.setProperty('--note', '#444444');
+        root.style.setProperty('--btn-bg', '#000000');
+        root.style.setProperty('--btn-text', '#ffffff');
+        icon.textContent = '☀️';
+      }
+    }
+  </script>
+</body>
+</html>
